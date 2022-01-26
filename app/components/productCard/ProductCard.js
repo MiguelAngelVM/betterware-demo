@@ -3,20 +3,39 @@ import React, { useState } from 'react';
 import { Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { scale } from "utils/TextSize";
 import { Colors } from 'assets/styles/Colors';
+import SInfo from 'react-native-sensitive-info';
+import { optionsSINFO } from 'utils/Utils.js';
+import { Appcontext } from 'betterware/AppContext';
 
+function ProductCard({name, uri, code, price, promo, id}) {
 
-function ProductCard({name, uri, code, price, promo}) {
+	const context = React.useContext(Appcontext);
 	
 	let [amount, setAmount] = useState(0);
-	const changeAmount = (sum) => {
+	
+	const changeAmount = async (sum) => {	
+		sum ?  amount ++ :  amount --;
+
+		setAmount(amount);
 		
-		if(sum)
-			amount ++;
-		else 
-			amount --;
+		let cart = context.cart;
 		
-		setAmount(amount)
+		if(!cart){
+			cart = {};
+		}
+		
+		if(amount == 0 && cart['id' + id]){
+			delete cart['id' + id];
+		}else if(amount > 0 && cart['id' + id]){
+			cart['id' + id].amount = amount;
+		}else if(amount > 0 && !cart['id' + id]){
+			cart['id' + id] = {
+				name, uri, code, price, promo, id, amount
+			};
+		}
+		context.setChanges({cart})
 	}
+
 	return (
 		<Box h={scale(270)} w="45%" rounded="md" style={styles.box}>
 			<Text style={styles.title}>{name}</Text>
@@ -31,12 +50,11 @@ function ProductCard({name, uri, code, price, promo}) {
 				<TouchableOpacity  onPress={()=>{changeAmount(true)}} style={styles.amount}>
 					<Text style={{fontWeight:"bold", fontSize:scale(18), textAlign:"center", top:scale(2)}}>+</Text>
 				</TouchableOpacity>
-			</View>
-				
+			</View>	
 		</Box>
-
 	);
 }
+
 const styles = StyleSheet.create({
     box:{
         flexDirection:"column", backgroundColor:"white", margin:"2%", borderRadius:10, paddingTop:0, padding:scale(5)
