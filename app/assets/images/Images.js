@@ -1,5 +1,3 @@
-import popcake from './slider/popcake.png';
-import cake from './slider/cake.png';
 import car from './icons/car.png';
 import bag from './icons/bag.png';
 import user from './icons/user.png';
@@ -13,11 +11,7 @@ const img = {
     money,
     car,
     bag,
-    bag2,
-    slider:{
-        popcake,
-        cake
-    }   
+    bag2
 }
 
 export default img
