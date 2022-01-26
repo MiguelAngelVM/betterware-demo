@@ -9,22 +9,22 @@ import { Input, Box, Center, Button, Text, Icon } from "native-base";
 import FAB from 'react-native-fab'
 import { Appcontext } from 'betterware/AppContext';
 
-function Home() {
+function Home({ navigation }) {
 
     const context = React.useContext(Appcontext);
+
     const getFab = () => {
         if(!context.cart){
             return
         }
-        console.log("context.cart", context.cart)
         let countCart = Object.keys(context.cart).length;
-        console.log("countCart", countCart);
         if(countCart > 0){
             return(
-                <FAB buttonColor={Colors.primary} iconTextColor="#FFFFFF" onClickAction={() => {console.log("FAB pressed")}} visible={true} iconTextComponent={<Icon name="all-out"/>} />
+                <FAB buttonColor={Colors.primary} iconTextColor="#FFFFFF" onClickAction={() => {navigation.navigate('Cart')}} visible={true} iconTextComponent={<Icon name="all-out"/>} />
             )
         }
     }
+
     return (
         <NativeBaseProvider>
             <StatusBar backgroundColor={Colors.primary} barStyle="dark-content"/>
@@ -34,7 +34,6 @@ function Home() {
                 <ProductList/>
             </ScrollView>
             {getFab()}
-
         </NativeBaseProvider>
     );
 }

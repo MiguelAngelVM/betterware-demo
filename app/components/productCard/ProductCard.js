@@ -7,7 +7,7 @@ import SInfo from 'react-native-sensitive-info';
 import { optionsSINFO } from 'utils/Utils.js';
 import { Appcontext } from 'betterware/AppContext';
 
-function ProductCard({name, uri, code, price, promo, id}) {
+function ProductCard({name, uri, code, price, promo, id, w="45%", h=scale(270), showAmount = 1, updateAmount = 0 }) {
 
 	const context = React.useContext(Appcontext);
 	
@@ -37,20 +37,25 @@ function ProductCard({name, uri, code, price, promo, id}) {
 	}
 
 	return (
-		<Box h={scale(270)} w="45%" rounded="md" style={styles.box}>
+		<Box h={h} w={w} rounded="md" style={styles.box}>
 			<Text style={styles.title}>{name}</Text>
 			<Image source={{uri}} style={styles.image}/>
 			<Text style={{fontSize:scale(9)}}>Código {code}</Text>
 			<Text style={{fontSize:scale(9)}}>${price} o llévalo por <Text style={{fontSize:scale(9), color:"orange", fontWeight:"bold"}}>${promo}</Text></Text>
-			<View style={styles.amountView}>
-				<TouchableOpacity  onPress={()=>{amount > 0 ? changeAmount(false) : ""}} style={styles.amount}>
-					<Text style={{fontWeight:"bold", fontSize:scale(20), textAlign:"center", top:scale(2)}}>-</Text>
-				</TouchableOpacity>
-					<Text style={{fontSize:scale(15), color:"black", marginRight:scale(10), marginLeft:scale(10)}}>{amount}</Text>
-				<TouchableOpacity  onPress={()=>{changeAmount(true)}} style={styles.amount}>
-					<Text style={{fontWeight:"bold", fontSize:scale(18), textAlign:"center", top:scale(2)}}>+</Text>
-				</TouchableOpacity>
-			</View>	
+			{showAmount == 1 && 
+				<View style={styles.amountView}>
+					<TouchableOpacity  onPress={()=>{amount > 0 ? changeAmount(false) : ""}} style={styles.amount}>
+						<Text style={{fontWeight:"bold", fontSize:scale(20), textAlign:"center", top:scale(2)}}>-</Text>
+					</TouchableOpacity>
+						<Text style={{fontSize:scale(15), color:"black", marginRight:scale(10), marginLeft:scale(10)}}>{amount}</Text>
+					<TouchableOpacity  onPress={()=>{changeAmount(true)}} style={styles.amount}>
+						<Text style={{fontWeight:"bold", fontSize:scale(18), textAlign:"center", top:scale(2)}}>+</Text>
+					</TouchableOpacity>
+				</View>	
+			}
+			{updateAmount > 0 && 
+				<Text style={{fontSize:scale(9)}}>Cantidad {updateAmount}</Text>
+			}
 		</Box>
 	);
 }

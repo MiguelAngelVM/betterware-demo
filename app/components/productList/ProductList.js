@@ -22,8 +22,8 @@ function ProductList({name, uri, code, price, promo}) {
 				name:"COBI COJÍN", 
 				uri:"https://img.betterware.com.mx/kXpP2PzGOUAKFtxmb7__pVKFnYg=/fit-in/640x640/https%3A%2F%2Fstorage.googleapis.com%2Fbetterware-production-media%2Fproducts%2F22301-1-Cobi-Cojin-Betterware.jpg",
 				code:"22301",
-				price:"329..00",
-				promo:"129.00"
+				price:"125.00",
+				promo:"85.00"
 			}
 		],
 		[
@@ -32,16 +32,16 @@ function ProductList({name, uri, code, price, promo}) {
 				name:"GYM-FIT", 
 				uri:"https://img.betterware.com.mx/nn9QQVKVRDhc7yWqc36iRoLfVW8=/fit-in/640x640/https%3A%2F%2Fstorage.googleapis.com%2Fbetterware-production-media%2Fproducts%2F22707-1-Gym-Fit-Betterware.jpg",
 				code:"22707",
-				price:"159.00",
-				promo:"129.00"
+				price:"2401.00",
+				promo:"120.00"
 			},
 			{
 				id:3,
 				name:"PANTU MOPS", 
 				uri:"https://img.betterware.com.mx/xtAgAoR7xg6j7FUWveGfJwNKnRQ=/fit-in/640x640/https%3A%2F%2Fstorage.googleapis.com%2Fbetterware-production-media%2Fproducts%2F22106-1-Pantu-Mop-Betterware.jpg",
 				code:"22301",
-				price:"329..00",
-				promo:"129.00"
+				price:"380.00",
+				promo:"260.00"
 			}
 		],
 		[
@@ -50,16 +50,16 @@ function ProductList({name, uri, code, price, promo}) {
 				name:"BÁSCULA SMART FIT", 
 				uri:"https://img.betterware.com.mx/PZV-m-4eByyUgc4gXL5HoP9JjAM=/fit-in/640x640/https%3A%2F%2Fstorage.googleapis.com%2Fbetterware-production-media%2Fproducts%2F22400-1-Bascula-Smart-Fit-Betterware.jpg",
 				code:"21742",
-				price:"159.00",
-				promo:"129.00"
+				price:"256.00",
+				promo:"199.00"
 			},
 			{
 				id:5,
 				name:"TABLAS COLORS", 
 				uri:"https://img.betterware.com.mx/4tzY2Shcd9BAsVwF8N6vzchcmXI=/fit-in/640x640/https%3A%2F%2Fstorage.googleapis.com%2Fbetterware-production-media%2Fproducts%2F22502-1-Tablas-Colors-Betterware.jpg",
 				code:"22301",
-				price:"329..00",
-				promo:"129.00"
+				price:"300.00",
+				promo:"199.00"
 			}
 		],
 		[
@@ -76,7 +76,7 @@ function ProductList({name, uri, code, price, promo}) {
 				name:"BAGGI", 
 				uri:"https://img.betterware.com.mx/D_RTYJY0NxnTaIrnjVUHbrTADvY=/fit-in/640x640/https%3A%2F%2Fstorage.googleapis.com%2Fbetterware-production-media%2Fproducts%2F22704-1-Baggi-Betterware.jpg",
 				code:"22301",
-				price:"329..00",
+				price:"329.00",
 				promo:"129.00"
 			}
 		]
@@ -85,7 +85,6 @@ function ProductList({name, uri, code, price, promo}) {
 
 	return (
 		<FlatList data={data} renderItem={({item, key})=>{
-			console.log(item)
 			return(
 			<HStack space={0} justifyContent="center" key={"rowList"+key} >
 				<ProductCard {...item[0]}/>
